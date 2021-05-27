@@ -39,15 +39,19 @@ function createProject(name, id, noOfProjects = 1) {
   }
 
   project.changeName = function(newName) {
-    return newName = project.name;
+    let prevName = project.name;
+    project.name = newName;
+    return prevName
   }
 
-  project.incrementProject = function(value) {
-    return value += project.noOfProjects;
+  project.incrementProject = function() {
+    project.noOfProjects += 1;
+    return project.noOfProjects
   }
 
-   project.decrementProject = function(value) {
-    return value -= project.noOfProjects;
+   project.decrementProject = function() {
+    project.noOfProjects -= 1;
+    return project.noOfProjects
   }
 
   return project;
@@ -57,26 +61,50 @@ function createProject(name, id, noOfProjects = 1) {
 let project1 = createProject("Sohail", 1, 9);
 let project2 = createProject("Arya", 2, 6);
 
+console.group("User1");
+console.log(`name : ${project1.name}`);
+console.log(`id : ${project1.id}`);
+console.log(`noOfProjects : ${project1.noOfProjects}`);
+console.log(project1.incrementProject());
+console.log(project1.decrementProject());
+console.log(project1.changeName("John"));
+console.log(project1.name);
+console.groupEnd();
+
+console.group("User2");
+console.log(`name : ${project1.name}`);
+console.log(`id` : ${project1.id});
+console.log(`noOfProjects : ${project1.noOfProjects}`);
+console.log(project2.incrementProject());
+console.log(project2.decrementProject());
+console.log(project2.changeName("Stark"));
+console.log(project2.name);
+console.groupEnd();
+
 ```
 //Using Prototypical Pattern
 
 ```js
 let projectMethods = {
 
-  project.getProjects = function() {
-    return project.noOfProjects;
-  }
+   getProjects : function() {
+    return this.noOfProjects;
+  },
 
-  project.changeName = function(newName) {
-    return newName = project.name;
-  }
+  changeName : function(newName) {
+    let prevName = this.name;
+    this.name = newName;
+    return prevName;
+  },
 
-  project.incrementProject = function(value) {
-    return value += project.noOfProjects;
-  }
+  incrementProject : function() {
+    this.noOfProjects += 1;
+    return this.noOfProjects;
+  },
 
-   project.decrementProject = function(value) {
-    return value -= project.noOfProjects;
+  decrementProject : function() {
+    this.noOfProjects -= 1;
+    return this.noOfProjects;
   }
 
 }
@@ -93,6 +121,26 @@ function createProject(name, id, noOfProjects) {
 let project1 = createProject("Sohail", 1, 9);
 let project2 = createProject("Arya", 2, 6);
 
+console.group("User1");
+console.log(`name : ${project1.name}`);
+console.log(`id : ${project1.id}`);
+console.log(`noOfProjects : ${project1.noOfProjects}`);
+console.log(project1.incrementProject());
+console.log(project1.decrementProject());
+console.log(project1.changeName("John"));
+console.log(project1.name);
+console.groupEnd();
+
+console.group("User2");
+console.log(`name : ${project1.name}`);
+console.log(`id : ${project1.id}`);
+console.log(`noOfProjects : ${project1.noOfProjects}`);
+console.log(project2.incrementProject());
+console.log(project2.decrementProject());
+console.log(project2.changeName("Stark"));
+console.log(project2.name);
+console.groupEnd();
+
 ```
 
 // Using PseudoCalssical Way
@@ -106,25 +154,49 @@ function createProject(name, id, noOfProjects) {
 
 createProject.prototype = {
 
-  project.getProjects = function() {
+  getProjects : function() {
     return this.noOfProjects;
-  }
+  },
 
-  project.changeName = function(newName) {
-    return newName = this.name;
-  }
+  changeName : function(newName) {
+    let prevName = this.name;
+    this.name = newName;
+    return prevName;
+  },
 
-  project.incrementProject = function(value) {
-    return value += this.noOfProjects;
-  }
+  incrementProject : function() {
+    this.noOfProjects += 1;
+    return this.noOfProjects;
+  },
 
-   project.decrementProject = function(value) {
-    return value -= this.noOfProjects;
+  decrementProject : function() {
+    this.noOfProjects -= 1;
+    return this.noOfProjects;
   }
 }
 
 let project1 = new createProject("Sohail", 1, 9);
 let project2 = new createProject("Arya", 2, 6);
+
+console.group("User1");
+console.log(`name : ${project1.name}`);
+console.log(`id : ${project1.id}`);
+console.log(`noOfProjects : ${project1.noOfProjects}`);
+console.log(project1.incrementProject());
+console.log(project1.decrementProject());
+console.log(project1.changeName("John"));
+console.log(project1.name);
+console.groupEnd();
+
+console.group("User2");
+console.log(`name : ${project1.name}`);
+console.log(`id : ${project1.id}`);
+console.log(`noOfProjects : ${project1.noOfProjects}`);
+console.log(project2.incrementProject());
+console.log(project2.decrementProject());
+console.log(project2.changeName("Stark"));
+console.log(project2.name);
+console.groupEnd();
 ```
 
 // Using class Pattern
@@ -137,24 +209,49 @@ class project {
     this.noOfProjects = noOfProjects;
   }
 
-    project.getProjects = function() {
+  getProjects() {
     return this.noOfProjects;
   }
 
-  project.changeName = function(newName) {
-    return newName = this.name;
+  changeName(newName) {
+    let prevName = this.name;
+    this.name = newName;
+    return prevName;
   }
 
-  project.incrementProject = function(value) {
-    return value += this.noOfProjects;
+  incrementProject() {
+    this.noOfProjects += 1;
+    return this.noOfProjects;
   }
 
-   project.decrementProject = function(value) {
-    return value -= this.noOfProjects;
+  decrementProject() {
+    this.noOfProjects -= 1;
+    return this.noOfProjects;
   }
 }
 
-let project1 = new createProject("Sohail", 1, 9);
-let project2 = new createProject("Arya", 2, 6);
+
+let project1 = new project("Sohail", 1, 9);
+let project2 = new project("Arya", 2, 6);
+
+console.group("User1");
+console.log(`name : ${project1.name}`);
+console.log(`id : ${project1.id}`);
+console.log(`noOfProjects : ${project1.noOfProjects}`);
+console.log(project1.incrementProject());
+console.log(project1.decrementProject());
+console.log(project1.changeName("John"));
+console.log(project1.name);
+console.groupEnd();
+
+console.group("User2");
+console.log(`name : ${project1.name}`);
+console.log(`id : ${project1.id}`);
+console.log(`noOfProjects : ${project1.noOfProjects}`);
+console.log(project2.incrementProject());
+console.log(project2.decrementProject());
+console.log(project2.changeName("Stark"));
+console.log(project2.name);
+console.groupEnd();
 ```
 
