@@ -5,7 +5,10 @@
 /*** CHALLENGE 1 of 1 ***/
 
 function makePerson(name, age) {
-  // add code here
+  let obj = {};
+  obj.name = name;
+  obj.age = age;
+  return obj;
 }
 
 var vicky = makePerson('Vicky', 24);
@@ -21,28 +24,36 @@ var vicky = makePerson('Vicky', 24);
 /*** CHALLENGE 1 of 3 ***/
 
 var personStore = {
-  // add code here
+  greet() {
+    console.log(`Hello`);
+  }
 };
 
 // /********* Uncomment this line to test your work! *********/
-// personStore.greet(); // -> Logs 'hello'
+personStore.greet(); // -> Logs 'hello'
 
 /*** CHALLENGE 2 of 3 ***/
 
 function personFromPersonStore(name, age) {
-  // add code here
+  let person = Object.create(personStore)
+  person.name = name;
+  person.age = age;
+  return person;
 }
 
 var sandra = personFromPersonStore('Sandra', 26);
 
 // /********* Uncomment these lines to test your work! *********/
-// console.log(sandra.name); // -> Logs 'Sandra'
-// console.log(sandra.age); //-> Logs 26
-// sandra.greet(); //-> Logs 'hello'
+console.log(sandra.name); // -> Logs 'Sandra'
+console.log(sandra.age); //-> Logs 26
+sandra.greet(); //-> Logs 'hello'
 
 /*** CHALLENGE 3 of 3 ***/
 
 // add code here
+personStore.introduce = function() {
+  console.log(`Hi, my name is ${this.name}`)
+}
 
 // sandra.introduce(); // -> Logs 'Hi, my name is Sandra'
 
@@ -53,30 +64,36 @@ var sandra = personFromPersonStore('Sandra', 26);
 /*** CHALLENGE 1 of 3 ***/
 
 function PersonConstructor() {
-  // add code here
+  this.greet = function() {
+    console.log(`Hello`);
+  }
 }
 
 // /********* Uncomment this line to test your work! *********/
 var simon = new PersonConstructor();
-// simon.greet(); // -> Logs 'hello'
+simon.greet(); // -> Logs 'hello'
 
 /*** CHALLENGE 2 of 3 ***/
 
 function personFromConstructor(name, age) {
-  // add code here
+  PersonConstructor.apply(this, PersonConstructor.introduce());
+  this.name = name;
+  this.age = age;
 }
 
-var mike = personFromConstructor('Mike', 30);
+var mike = new personFromConstructor('Mike', 30);
 
 // /********* Uncomment these lines to test your work! *********/
-// console.log(mike.name); // -> Logs 'Mike'
-// console.log(mike.age); //-> Logs 30
-// mike.greet(); //-> Logs 'hello'
+console.log(mike.name); // -> Logs 'Mike'
+console.log(mike.age); //-> Logs 30
+mike.greet(); //-> Logs 'hello'
 
 /*** CHALLENGE 3 of 3 ***/
-// add code here
+PersonConstructor.introduce = function() {
+  console.log(`Hi, my name is ${this.name}`)
+}
 
-// mike.introduce(); // -> Logs 'Hi, my name is Mike'
+mike.introduce(); // -> Logs 'Hi, my name is Mike'
 
 /****************************************************************
                         USING ES6 CLASSES
@@ -85,29 +102,37 @@ var mike = personFromConstructor('Mike', 30);
 /*** CHALLENGE 1 of 3 ***/
 
 class PersonClass {
-  constructor() {
-    // add code here
+  constructor(name) {
+    this.name = name;
   }
 
-  // add code here
+  greet() {
+    console.log(`Hello`);
+  }
 }
 
 // /********* Uncomment this line to test your work! *********/
 var george = new PersonClass();
-// george.greet(); // -> Logs 'hello'
+george.greet(); // -> Logs 'hello'
 
 /*** CHALLENGE 2 of 3 ***/
 
-// add code here
+class DeveloperClass extends PersonClass {
+  introduce() {
+    console.log(`Hello World, my name is ${this.name}`)
+  }
+}
 
 // /********* Uncomment these lines to test your work! *********/
-// var thai = new DeveloperClass('Thai', 32);
-// console.log(thai.name); // -> Logs 'Thai'
-// thai.introduce(); //-> Logs 'Hello World, my name is Thai'
+var thai = new DeveloperClass('Thai', 32);
+console.log(thai.name); // -> Logs 'Thai'
+thai.introduce(); //-> Logs 'Hello World, my name is Thai'
 
 /****************************************************************
                       EXTENSION: SUBCLASSING
 ****************************************************************/
+
+
 
 var userFunctionStore = {
   sayType: function () {
@@ -123,13 +148,18 @@ function userFactory(name, score) {
   return user;
 }
 
-var adminFunctionStore /* Put code here */;
+var adminFunctionStore = {};
+Object.setPrototypeOf(userFunctionStore, adminFunctionStore);
 
 function adminFactory(name, score) {
-  // Put code here
+  userFactory.apply(this, [name, score]);
 }
 
 /* Put code here for a method called sharePublicMessage*/
+function sharePublicMessage() {
+  adminFactory.apply(this)
+  console.log(`Welcome users!`)
+}
 
 var adminFromFactory = adminFactory('Eva', 5);
 
