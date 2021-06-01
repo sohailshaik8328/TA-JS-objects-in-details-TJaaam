@@ -12,21 +12,20 @@ Queue
 
 ```js
 class Stack {
-    constructor(stack) {
-        this.stack = stack;
+    constructor() {
+        this.stack = [];
     }
 
     push(value) {
-        this.stack += value;
-        return this.stack.trim();
+        this.stack.push(value);
+        return this.stack;
     } 
     pop() {
          this.stack.pop();
          return this.stack;
     }
-    peek(optional = optional.length - 1) {
-        this.stack.indexOf(optional);
-        return this.stack;
+    peek(index = this.stack.length - 1) {
+        return this.stack[index];
     }
     reverse() {
         this.stack.reverse();
@@ -36,7 +35,7 @@ class Stack {
         return this.stack.length === 0;
     }
     displayStack() {
-        return this.stack.toString();
+        return this.stack.join(" ");
     }
     get length() {
         return this.stack.length;
@@ -100,24 +99,26 @@ Getter
 
 ```js
 class Queue {
-    constructor(queue) {
-        this.queue = queue;
+    constructor() {
+        this.queue = [];
     }
     
     enqueue(item) {
-        this.queue += item;
+        this.queue.push(item);
+        return this.queue;
     }
     dequeue() {
-        this.queue.shift();
+        this.queue.splice(0, 1);
+        return this.queue;
     }
-    peek(optional = this.queue.findIndex(0)) {
-        return this.queue.findIndex(optional);
+    peek(index = 0) {
+        return this.queue[index];
     }
     isEmpty() {
         return this.queue.length === 0;
     }
     displayQueue() {
-        return this.queue;
+        return this.queue.join(" ");
     }
 
     get length() {
