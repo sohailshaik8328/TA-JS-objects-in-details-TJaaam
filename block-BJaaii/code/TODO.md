@@ -10,6 +10,40 @@ Queue
 
 1. Create a class name `Stack` with the following data and methods. Also implement a `length` getter method.
 
+```js
+class Stack {
+    constructor(stack) {
+        this.stack = stack;
+    }
+
+    push(value) {
+        this.stack += value;
+        return this.stack.trim();
+    } 
+    pop() {
+         this.stack.pop();
+         return this.stack;
+    }
+    peek(optional = optional.length - 1) {
+        this.stack.indexOf(optional);
+        return this.stack;
+    }
+    reverse() {
+        this.stack.reverse();
+        return this.stack;
+    }
+    isEmpty() {
+        return this.stack.length === 0;
+    }
+    displayStack() {
+        return this.stack.toString();
+    }
+    get length() {
+        return this.stack.length;
+    }
+}
+```
+
 Data:
 
 - `stack`
@@ -63,6 +97,34 @@ Methods:
 Getter
 
 - `length`: returns the current length of the stack.
+
+```js
+class Queue {
+    constructor(queue) {
+        this.queue = queue;
+    }
+    
+    enqueue(item) {
+        this.queue += item;
+    }
+    dequeue() {
+        this.queue.shift();
+    }
+    peek(optional = this.queue.findIndex(0)) {
+        return this.queue.findIndex(optional);
+    }
+    isEmpty() {
+        return this.queue.length === 0;
+    }
+    displayQueue() {
+        return this.queue;
+    }
+
+    get length() {
+        return this.queue.length;
+    }
+}
+```
 
 #### Test
 
