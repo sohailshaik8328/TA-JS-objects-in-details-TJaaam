@@ -59,7 +59,8 @@ table {
 .flex {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
 }
 .center {
     display: flex;
@@ -87,7 +88,7 @@ form input{
     display: block;
     width: 99.6%;
     height: 45px;
-    border: 1px solid gray;
+    border: 1px solid rgba(128, 128, 128, 0.301);
     outline: 0;
     font-size: 2.5rem;
 }
@@ -102,31 +103,51 @@ form input{
     border: none;
     outline: none;
 }
-.headings_section {
-    margin-top: 2rem;
-    border: 1px solid rgba(128, 128, 128, 0.24);
+
+.card{
+    position: relative;
+    border-radius: 6px;
+    margin: 2rem;
+    text-align: center;
+    width: 26%;
+    padding: 2rem;
+    box-shadow: -2px -2px 6px rgba(0, 0, 0, 0.5), 2px 2px 6px rgba(0, 0, 0, 0.5) ;
+    
 }
-.headings_section .heads{
-    font-size: 2rem;
+.title {
+    font-size: 3rem;
     font-weight: bold;
+    margin-top: 1rem;
 }
-.headings {
-    padding: 1rem;
+.author {
+    font-size: 2rem;
+    margin-top: 1rem;
+}
+.card_btn {
+    font-size: 1.8rem;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #4C6EF5;
+    border: 0;
+    outline: 0;
+    margin-top: 1rem;
+    border-radius: 6px;
+    transition: all 0.5s ease-in-out ;
+}
+.card_btn:hover {
+    background-color: hotpink;
+}
+.cross {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    cursor: pointer;
+    font-size: 2rem;
+}
+.image {
+    margin-top: 2rem;
 }
 
-p, span{
-    font-size: 2rem;    
-}
-span {
-    cursor: pointer;
-}
-li {
-    margin-top: 1rem;
-    border-bottom: 1px solid gray;
-    padding: 1rem;
-}
-.checkbox {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-}
+
+
