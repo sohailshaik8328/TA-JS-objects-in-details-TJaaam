@@ -26,7 +26,7 @@ This method will decide how the UI of a question look like. Calling this functio
 
 ### Make quiz class with these data and properties
 
-DATA:
+DATA:l
 
 - allQuestions
   Collection of Questions. An array with multiple question.
